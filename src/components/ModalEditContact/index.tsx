@@ -41,6 +41,7 @@ const schema = Yup.object().shape({
   phoneNumber: Yup.number()
     .required("Telefone é obrigatório")
     .moreThan(9999999999, "No mínimo 11 dígitos")
+    .max(11, "No máximo 11 dígitos")
     .typeError("Informe o número do telefone"),
 });
 
