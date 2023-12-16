@@ -14,3 +14,7 @@ $ npm i
 # Execute o comando
 $ npm run dev
 ```
+
+<p align="center">
+  <img alt="Barber" src=".github/2023-12-16 20-07-42.gif">
+</p>
