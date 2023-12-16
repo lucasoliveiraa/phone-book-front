@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { InputContainer, SearchIcon, StyledInput } from "./styles";
 
-export function Input({ ...rest }) {
+export function InputSearch({ ...rest }) {
   const [isInputSelected, setIsInputSelected] = useState(false);
 
   const handleInputFocus = () => {

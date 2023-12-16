@@ -2,38 +2,45 @@ import { FaPhone, FaTrash, FaEdit } from "react-icons/fa";
 import { Container, InfoContact, ContactIcons } from "./styles";
 
 interface IContactPlate {
-  id: string;
+  id?: string;
   name: string;
   lastName: string;
-  phoneNumber: string;
+  phoneNumber: number;
+  created_at?: Date;
 }
 
 interface IProps {
   contact: IContactPlate;
-  handleDelete: (id: string) => void;
+  handleDeleteContact: (id: string) => void;
   handleEditContact: (contact: IContactPlate) => void;
 }
 
-export function Contact({ contact, handleDelete, handleEditContact }: IProps) {
+export function Contact({
+  contact,
+  handleDeleteContact,
+  handleEditContact,
+}: IProps) {
   function setEditingContact(): void {
-    console.log("EDITAR CONTACT");
+    console.log("====> CONTATACT", contact);
     handleEditContact(contact);
   }
 
   return (
     <Container>
       <InfoContact>
-        <h2>lucas oliveiraaaaaaaaa</h2>
+        <h2>
+          {contact.name} {contact.lastName}
+        </h2>
         <div className="icon">
           <FaPhone size={16} />
-          <h3>99999999999</h3>
+          <h3>{contact.phoneNumber}</h3>
         </div>
       </InfoContact>
       <ContactIcons>
         <button type="button" onClick={() => setEditingContact()}>
           <FaEdit size={18} />
         </button>
-        <button type="button" onClick={() => handleDelete(contact.id)}>
+        <button type="button" onClick={() => handleDeleteContact(contact.id)}>
           <FaTrash size={18} />
         </button>
       </ContactIcons>

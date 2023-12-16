@@ -46,7 +46,7 @@ export const InputField = styled.input`
   flex: 1;
   background: transparent;
   border: 0;
-  color: #b7b7cc;
+  color: #202020;
 
   &::placeholder {
     color: #b7b7cc;
