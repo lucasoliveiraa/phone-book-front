@@ -53,8 +53,8 @@ export const InputField = styled.input`
   }
 `;
 
-export const ErrorMessage = styled.span`
+export const Error = styled.span`
   color: red;
   font-size: 0.8em;
-  margin-top: 4px;
+  margin: 4px 0;
 `;

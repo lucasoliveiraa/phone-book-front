@@ -21,7 +21,6 @@ export function Contact({
   handleEditContact,
 }: IProps) {
   function setEditingContact(): void {
-    console.log("====> CONTATACT", contact);
     handleEditContact(contact);
   }
 

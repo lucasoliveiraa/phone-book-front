@@ -42,7 +42,6 @@ export function Dashboard() {
       setContacts([...contacts, response.data]);
     } catch (err) {
       alert(err.response.data.message);
-      console.log("=======", err.response.data.message);
     }
   }
 
@@ -50,12 +49,10 @@ export function Dashboard() {
     contact: Omit<IContactPlate, "id">
   ): Promise<void> {
     try {
-      console.log("====> EDIT 1");
       const response = await api.put(`/${editingContact.id}`, {
         ...editingContact,
         ...contact,
       });
-      console.log("====> EDIT 2");
       setContacts(
         contacts.map((mappedContact) =>
           mappedContact.id === editingContact.id
@@ -63,9 +60,8 @@ export function Dashboard() {
             : mappedContact
         )
       );
-      console.log("====> EDIT 3");
     } catch (err) {
-      console.log("===========", err);
+      console.log(err);
     }
   }
 
@@ -88,11 +84,9 @@ export function Dashboard() {
   }
 
   function handleEditContact(contact: IContactPlate): void {
-    console.log("handleEditContact", contact);
-    const teste = contacts.filter((contacts) => contacts.id == contact.id);
+    const data = contacts.filter((contacts) => contacts.id == contact.id);
 
-    setEditingContact(teste[0]);
-    console.log("editingContact", teste[0]);
+    setEditingContact(data[0]);
     toggleEditModal();
   }
 

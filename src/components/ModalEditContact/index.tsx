@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { FiCheckSquare } from "react-icons/fi";
 import { Form } from "./styles";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useForm } from "react-hook-form";
 import { Modal } from "../Modal";
@@ -27,13 +29,35 @@ interface Props {
   editingContact: IContactPlate;
 }
 
+const schema = Yup.object().shape({
+  name: Yup.string()
+    .required("Nome é obrigatório")
+    .min(2, "No mínimo 2 caracteres")
+    .max(30, "No máximo 30 caracteres"),
+  lastName: Yup.string()
+    .required("Sobrenome é obrigatório")
+    .min(2, "No mínimo 2 caracteres")
+    .max(50, "No máximo 50 caracteres"),
+  phoneNumber: Yup.number()
+    .required("Telefone é obrigatório")
+    .moreThan(9999999999, "No mínimo 11 dígitos")
+    .typeError("Informe o número do telefone"),
+});
+
 export function ModalEdit({
   isOpen,
   setIsOpen,
   editingContact,
   handleUpdateContact,
 }: Props) {
-  const { handleSubmit, register, reset } = useForm<ICreateContactData>();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    reset,
+  } = useForm<ICreateContactData>({
+    resolver: yupResolver(schema),
+  });
   const [userData, setUserData] = useState({ ...editingContact });
 
   useEffect(() => {
@@ -43,18 +67,12 @@ export function ModalEdit({
 
   const onSubmit = useCallback(
     async (contact: ICreateContactData) => {
-      teste();
-      console.log("new DATA", contact);
       handleUpdateContact(contact);
       setIsOpen();
       reset();
     },
     [handleUpdateContact, setIsOpen, reset]
   );
-
-  function teste() {
-    console.log("=========> teste", editingContact);
-  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -71,6 +89,7 @@ export function ModalEdit({
           onChange={handleInputChange}
           name={"name"}
           placeholder="Digite seu nome"
+          error={errors.name && errors.name.message}
         />
         <InputText
           register={register}
@@ -78,6 +97,7 @@ export function ModalEdit({
           onChange={handleInputChange}
           name="lastName"
           placeholder="Digite seu sobrenome"
+          error={errors.lastName && errors.lastName.message}
         />
         <InputText
           register={register}
@@ -85,6 +105,7 @@ export function ModalEdit({
           onChange={handleInputChange}
           name="phoneNumber"
           placeholder="Digite seu numero telefonico"
+          error={errors.phoneNumber && errors.phoneNumber.message}
         />
         <button type="submit">
           <p className="text">Atualizar contato</p>
