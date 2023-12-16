@@ -1,5 +1,11 @@
-function App() {
-  return <h1>hello</h1>;
-}
+import { Dashboard } from "./pages/Dashboard";
+import GlobalStyle from "./styles/global";
 
-export default App;
+export function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <Dashboard />
+    </>
+  );
+}
