@@ -1,17 +1,17 @@
-## 💻 Projeto
+## 💻 Project
 
-**Frontend** - Projeto proposto pela empresa SOAP, para um desafio de uma lista telefonica.
+**Frontend** - Project proposed by the company SOAP, for a challenge of the an list phone.
 
-## 🚀 Como rodar o projeto
+## 🚀 How to run the project
 
 ```bash
-# Clone este repositório
+# Clone this repository
 $ git clone https://github.com/lucasoliveiraa/phone-book-front.git
 
-# Instale as dependências
+# Install dependencies
 $ npm i
 
-# Execute o comando
+# Run command
 $ npm run dev
 ```
 
